@@ -48,7 +48,7 @@ const Country = ({country,handleVisitedCountries}) => {
       <p>Capital: {country.capital.capital[0]}</p>
 
        <p>Area: {country.area.area}
-         {country.area.area> 300000?"Big Country":"Small Country"}</p>
+         {country.area.area> 300000? " Big Country":" Small Country"}</p>
          
       <p>Currencies: {currencyEntries.map(([code, info]) => <li key={code}>{code} → {info.name} ({info.symbol})</li> )}</p>
 

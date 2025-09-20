@@ -8,7 +8,10 @@ const Countries = ({countriesPromise}) => {
 
   // handle visted countries 
    const handleVisitedCountries =(country)=>{
-    console.log("handle viisited country clicked", country);
+    // console.log("handle viisited country clicked", country);
+   
+    const newVisitedCountries = [...visitedCountries,country];
+    setVisitedCountries(newVisitedCountries);
    }
 
 
@@ -20,8 +23,13 @@ const Countries = ({countriesPromise}) => {
     <div >
       <h1>In the Countries: {countries.length}</h1>
       {/* koita country visit korsi tar hishab */}
-      <h3>Total country Visited:</h3>
-      <div className='countries'>
+      <h3>Total country Visited: {visitedCountries.length}</h3>
+    {/* j koita desh visit korsi tar name dekhate */}
+    <ol>
+      {visitedCountries.map(country => <li key={country.cca3.cca3}>{country.name.common}</li>)}
+    </ol>
+
+      <div className='countries'> 
         {
         countries.map(country => <Country key={country.cca3.cca3} country= {country} handleVisitedCountries={handleVisitedCountries}></Country>)
       }
