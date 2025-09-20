@@ -1,17 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
  import './Country.css';
-const Country = ({country}) => {
+
+const Country = ({country,handleVisitedCountries}) => {
+
+  // console.log(handleVisitedCountries)
+  // useState for button click visited/not visited
+  const [visited, setVisited] = useState(false)
+
+
+
+
   const currencyEntries = Object.entries(country.currencies.currencies);
+
   // console.log(currencyEntries)
   // console.log(country.capital.capital[0])
   // console.log(country.population.population);
     
   const handleVisited =()=>{
-    console.log("button clicked")
+    // setVisited(true);
+    // jodi akbar click korar por punrai click kori tahola not visited dakabe
+
+    //  basic system
+
+    // if(visited){
+    //   setVisited(false);
+    // }
+    // else{
+    //   setVisited(true);
+    // }
+
+  //  2nd system
+    // ata turnary operator diya korte
+    // setVisited(visited? false: true)
+
+    // third system
+    setVisited(!visited)
+    handleVisitedCountries(country);
   }
 
   return (
-    <div className='country'>
+    <div className={`country ${visited && 'country-visited'}`}>
       <img src={country.flags.flags.png} alt={country.flags.flags.alt} />
       <h3>Name: {country.name.common}</h3>
 
@@ -24,7 +52,9 @@ const Country = ({country}) => {
          
       <p>Currencies: {currencyEntries.map(([code, info]) => <li key={code}>{code} → {info.name} ({info.symbol})</li> )}</p>
 
-     <button onClick={handleVisited}>Not Visited</button>
+     <button onClick={handleVisited}>
+      {visited? "Visited" : "Not visited"}
+     </button>
     </div>  
   );
 };
